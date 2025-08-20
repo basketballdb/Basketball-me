@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basketball Hub</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      background-color: #f0f2f5;
+    }
+
+    header {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      width: 250px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    input[type="date"] {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Top-left search bar -->
+  <header>
+    <input type="text" id="searchBar" placeholder="Search games, persons, competitions...">
+  </header>
+
+  <!-- Centered date picker -->
+  <main>
+    <label for="datePicker">Pick a date:</label>
+    <input type="date" id="datePicker">
+    <button onclick="goToDate()">Go</button>
+  </main>
+
+  <script>
+    function goToDate() {
+      const dateInput = document.getElementById('datePicker').value;
+      if (dateInput) {
+        // Convert date to a URL-friendly format (YYYY-MM-DD)
+        const url = `games_by_date.html?date=${dateInput}`;
+        window.location.href = url;
+      } else {
+        alert('Please select a date first!');
+      }
+    }
+
+    // Optional: handle Enter key in search bar
+    const searchBar = document.getElementById('searchBar');
+    searchBar.addEventListener('keypress', function(event) {
+      if (event.key === 'Enter') {
+        const query = searchBar.value.trim();
+        if (query) {
+          const url = `search_results.html?q=${encodeURIComponent(query)}`;
+          window.location.href = url;
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
