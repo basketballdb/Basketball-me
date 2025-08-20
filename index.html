@@ -56,7 +56,6 @@
     button:hover {
       background-color: #0056b3;
     }
-
   </style>
 </head>
 <body>
@@ -74,18 +73,27 @@
   </main>
 
   <script>
+    // Map dates to their corresponding game file
+    const gameFiles = {
+      "2025-08-17": "games/poland_vs_finland.html", 
+      // add more like:
+      // "2025-09-05": "games/germany_vs_france.html"
+    };
+
     function goToDate() {
       const dateInput = document.getElementById('datePicker').value;
       if (dateInput) {
-        // Convert date to a URL-friendly format (YYYY-MM-DD)
-        const url = `games_by_date.html?date=${dateInput}`;
-        window.location.href = url;
+        if (gameFiles[dateInput]) {
+          window.location.href = gameFiles[dateInput];
+        } else {
+          alert("No game found for this date.");
+        }
       } else {
         alert('Please select a date first!');
       }
     }
 
-    // Optional: handle Enter key in search bar
+    // Search bar redirects to results page
     const searchBar = document.getElementById('searchBar');
     searchBar.addEventListener('keypress', function(event) {
       if (event.key === 'Enter') {
